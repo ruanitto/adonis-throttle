@@ -8,6 +8,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+const { promisify } = require('util')
 
 const Cache = require('..')
 
@@ -31,6 +32,7 @@ class Redis extends Cache {
     })
 
     this.redis = Redis.namedConnection('__adonis__throttle', config)
+    this.getAsync = promisify(redis.get).bind(redis)
   }
 
   /**
@@ -51,8 +53,9 @@ class Redis extends Cache {
    *
    * @return {Mixed}
    */
-  get(key) {
-    return this.redis.get(key)
+  async get(key) {
+    // return this.redis.get(key)
+    await this.getAsync(key)
   }
 
   /**
