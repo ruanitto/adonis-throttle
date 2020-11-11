@@ -32,7 +32,7 @@ class Redis extends Cache {
     })
 
     this.redis = Redis.namedConnection('__adonis__throttle', config)
-    this.getAsync = promisify(redis.get).bind(redis)
+    this.getAsync = promisify(this.redis.get).bind(this.redis)
   }
 
   /**
@@ -43,8 +43,8 @@ class Redis extends Cache {
    *
    * @return {TimeoutPointer}
    */
-  put(key, value, milliseconds) {
-    this.redis.set(key, value, 'px', milliseconds)
+  async put(key, value, milliseconds) {
+    await this.redis.set(key, value, 'px', milliseconds)
   }
 
   /**
@@ -55,7 +55,7 @@ class Redis extends Cache {
    */
   async get(key) {
     // return this.redis.get(key)
-    await this.getAsync(key)
+    return await this.getAsync(key)
   }
 
   /**
@@ -64,9 +64,9 @@ class Redis extends Cache {
    *
    * @return {Integer}
    */
-  secondsToExpiration(key) {
+  async secondsToExpiration(key) {
     // Coerce to integer
-    return this.redis.ttl(key) >>> 0;
+    return await this.redis.ttl(key) >>> 0;
   }
 
   /**
@@ -75,8 +75,8 @@ class Redis extends Cache {
    *
    * @return {Cache}
    */
-  increment(key) {
-    this.redis.incr(key)
+  async increment(key) {
+    await this.redis.incr(key)
     return this
   }
 
@@ -87,8 +87,8 @@ class Redis extends Cache {
    *
    * @return {Cache}
    */
-  incrementExpiration(key, seconds) {
-    this.redis.expire(key, seconds)
+  async incrementExpiration(key, seconds) {
+    await this.redis.expire(key, seconds)
     return this
   }
 }

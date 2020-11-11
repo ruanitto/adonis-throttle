@@ -1,5 +1,5 @@
 {
-  "name": "adonis-throttle",
+  "name": "@ruanitto/adonis-throttle",
   "version": "2.3.6",
   "description": "A rate limiter for Adonis 4.1",
   "main": "src/Throttle.js",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/masasron/adonis-throttle.git"
+    "url": "git+https://github.com/ruanitto/adonis-throttle.git"
   },
   "keywords": [
     "rate",
@@ -23,13 +23,14 @@
   ],
   "author": "Ron Masas",
   "contributors": [
-    "Andrew Jo <andrewjo@gmail.com> (https://github.com/AndrewJo)"
+    "Andrew Jo <andrewjo@gmail.com> (https://github.com/AndrewJo)",
+    "Rafael Gomes <madrafael.gsilva@gmail.com> (https://github.com/ruanitto)"
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/masasron/adonis-throttle/issues"
+    "url": "https://github.com/ruanitto/adonis-throttle/issues"
   },
-  "homepage": "https://github.com/masasron/adonis-throttle#readme",
+  "homepage": "https://github.com/ruanitto/adonis-throttle#readme",
   "devDependencies": {
     "@adonisjs/fold": "^4.0.9",
     "@adonisjs/sink": "^1.0.17",

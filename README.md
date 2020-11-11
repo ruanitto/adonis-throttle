@@ -2,11 +2,6 @@
 
 A rate limiter for Adonis 4.1
 
-[![npm version](https://badge.fury.io/js/adonis-throttle.svg)](https://badge.fury.io/js/adonis-throttle)
-[![npm](https://img.shields.io/npm/dt/adonis-throttle.svg)](https://www.npmjs.com/package/adonis-throttle)
-[![CircleCI](https://img.shields.io/circleci/project/github/masasron/adonis-throttle.svg)](https://circleci.com/gh/masasron/adonis-throttle)
-[![Known Vulnerabilities](https://snyk.io/test/github/masasron/adonis-throttle/badge.svg?targetFile=package.json)](https://snyk.io/test/github/masasron/adonis-throttle?targetFile=package.json)
-
 ## Installation
 
 > For AdonisJS below version 4.1, you need install 2.0.x
@@ -14,7 +9,7 @@ A rate limiter for Adonis 4.1
 To get the latest version of Adonis Throttle, simply run:
 
 ```console
-adonis install adonis-throttle
+adonis install @ruanitto/adonis-throttle
 ```
 
 Once Adonis Throttle is installed, you need to register the service provider.
@@ -24,7 +19,7 @@ Open up bootstrap/app.js and add the following to the providers key.
 // start/app.js
 const providers = [
   ...,
-  'adonis-throttle/providers/ThrottleProvider',
+  '@ruanitto/adonis-throttle/providers/ThrottleProvider',
 ]
 ```
 
@@ -89,7 +84,7 @@ class TestController {
     const currentUser = request.auth.getCurrentUser()
     // Limit for a specific user
     Throttle.resource(currentUser.id,10,60)
-    if (!Throttle.attempt()){
+    if (!await Throttle.attempt()){
       return response.send('stop!')
     }
     response.send('secret')
@@ -118,7 +113,7 @@ class Memcached extends Cache {
    *
    * @return {Mixed}
    */
-  get(key) {
+  async get(key) {
     // implement get
   }
 
@@ -130,7 +125,7 @@ class Memcached extends Cache {
    *
    * @return {TimeoutPointer}
    */
-  put(key, value, milliseconds) {
+  async put(key, value, milliseconds) {
     // implement put
   }
 
@@ -140,7 +135,7 @@ class Memcached extends Cache {
    *
    * @return {Cache}
    */
-  increment(key) {
+  async increment(key) {
     // implement increment
     return this
   }
@@ -152,7 +147,7 @@ class Memcached extends Cache {
    *
    * @return {Cache}
    */
-  incrementExpiration(key, seconds) {
+  async incrementExpiration(key, seconds) {
     // implement incrementExpiration
     return this
   }
@@ -163,7 +158,7 @@ class Memcached extends Cache {
    *
    * @return {Integer}
    */
-  secondsToExpiration(key) {
+  async secondsToExpiration(key) {
     // implement secondsToExpiration
   }
 }

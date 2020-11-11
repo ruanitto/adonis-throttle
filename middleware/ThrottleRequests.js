@@ -36,13 +36,13 @@ class ThrottleRequests {
         const signature = this._resolveSignature(request, uid)
         this.throttle.resource(signature, parseInt(maxAttempts), parseInt(decayInSeconds))
 
-        if (!this.throttle.attempt()) {
-            this.throttle.incrementExpiration()
+        if (!await this.throttle.attempt()) {
+            await this.throttle.incrementExpiration()
             this._addHeaders(
                 response,
                 maxAttempts,
-                this.throttle.remainingAttempts(),
-                this.throttle.store.secondsToExpiration(this.throttle.key)
+                await this.throttle.remainingAttempts(),
+                await this.throttle.store.secondsToExpiration(this.throttle.key)
             )
             throw new TooManyRequestsException('Too Many Attempts.')
         }
@@ -50,7 +50,7 @@ class ThrottleRequests {
         this._addHeaders(
             response,
             maxAttempts,
-            this.throttle.remainingAttempts()
+            await this.throttle.remainingAttempts()
         )
 
         await next()
