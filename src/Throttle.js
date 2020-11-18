@@ -47,6 +47,10 @@ class Throttle {
     return response
   }
 
+  async isBlocked() {
+    return !(await this.check())
+  }
+
   /**
    * Increment expiration of the current resource.
    *
