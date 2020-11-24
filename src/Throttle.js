@@ -58,7 +58,7 @@ class Throttle {
    *
    * @return {Throttle}
    */
-  async incrementExpiration(seconds) {
+  async incrementExpiration(seconds = 5) {
     await this.store.incrementExpiration(this.key, seconds)
     return this
   }

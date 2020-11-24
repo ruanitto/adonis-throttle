@@ -54,7 +54,7 @@ class Memory extends Cache {
      * @return {TimeoutPointer}
      */
     deleteAfter(key, miliseconds) {
-        return setTimeout(function() {
+        return setTimeout(function () {
             delete this.data[key]
             delete this.timers[key]
             delete this.expirations[key]

@@ -4,12 +4,10 @@
   },
   "detail": {
     "contributors": [],
-    "diagrams": [
-      {
-        "title": "sadsdasad",
-        "thumbnail": "./public/content/images/thumbnail.jpg",
-        "id": 0
-      }
-    ]
+    "diagrams": [{
+      "title": "sadsdasad",
+      "thumbnail": "./public/content/images/thumbnail.jpg",
+      "id": 0
+    }]
   }
 }
